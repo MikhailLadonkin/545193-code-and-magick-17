@@ -38,11 +38,11 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillStyle = randomColor;
   var maxTime = getMaxElement(times);
   for (var i = 0; i < names.length; i++) {
-    var BarHeight = (150 * times[i] / maxTime);
+    var BarHeight = -(150 * times[i] / maxTime);
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     }
     ctx.fillText(names[i], CLOUD_X + GAP + FONT_GAP + (GAP + BAR_WIDTH) * i, CLOUD_Y + GAP);
-    ctx.fillRect(CLOUD_X + GAP + FONT_GAP + (GAP + BAR_WIDTH) * i, CLOUD_Y + GAP + TEXT_WIDTH, BAR_WIDTH, BarHeight);
+    ctx.fillRect(CLOUD_X + GAP + FONT_GAP + (GAP + BAR_WIDTH) * i, 120 + CLOUD_Y + GAP + TEXT_WIDTH, BAR_WIDTH, BarHeight);
   }
 };
