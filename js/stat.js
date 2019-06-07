@@ -17,6 +17,11 @@ var getMaxElement = function (arr) {
   return maxElement;
 };
 
+var randomColor = function () {
+  var max = 0xffffff;
+  return '#' + Math.round(Math.random() * max).toString(16);
+};
+
 window.renderStatistics = function (ctx, names, times) {
   var canvas = document.getElementById('winner-message');
   ctx = canvas.getContext('2d');
@@ -30,14 +35,14 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Ура вы победили!', 110, 20);
   ctx.fillText('Список результатов:', 110, 35);
 
-  ctx.fillStyle = '#000';
+  ctx.fillStyle = randomColor;
   var maxTime = getMaxElement(times);
   for (var i = 0; i < names.length; i++) {
     var BarHeight = (150 * times[i] / maxTime);
-    ctx.fillText(names[i], CLOUD_X + GAP + FONT_GAP + (GAP + BAR_WIDTH) * i, CLOUD_Y + GAP);
-    ctx.fillRect(CLOUD_X + GAP + FONT_GAP + (GAP + BAR_WIDTH) * i, CLOUD_Y + GAP + TEXT_WIDTH, BAR_WIDTH, BarHeight);
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     }
+    ctx.fillText(names[i], CLOUD_X + GAP + FONT_GAP + (GAP + BAR_WIDTH) * i, CLOUD_Y + GAP);
+    ctx.fillRect(CLOUD_X + GAP + FONT_GAP + (GAP + BAR_WIDTH) * i, CLOUD_Y + GAP + TEXT_WIDTH, BAR_WIDTH, BarHeight);
   }
 };
