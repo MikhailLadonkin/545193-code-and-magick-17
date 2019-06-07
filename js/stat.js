@@ -7,6 +7,7 @@ var CLOUD_Y = 50;
 var TEXT_WIDTH = 50;
 var FONT_GAP = 16;
 var BAR_WIDTH = 40;
+
 var getMaxElement = function (arr) {
   var maxElement = arr[0];
   for (var i = 0; i < arr.length; i++) {
@@ -17,14 +18,7 @@ var getMaxElement = function (arr) {
   return maxElement;
 };
 
-var randomColor = function () {
-  var max = 0xffffff;
-  return '#' + Math.round(Math.random() * max).toString(16);
-};
-
 window.renderStatistics = function (ctx, names, times) {
-  var canvas = document.getElementById('winner-message');
-  ctx = canvas.getContext('2d');
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.fillRect(110, 10, CLOUD_WIDTH, CLOUD_HEIGHT);
   ctx.fillStyle = 'white';
@@ -35,14 +29,17 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Ура вы победили!', 110, 20);
   ctx.fillText('Список результатов:', 110, 35);
 
-  ctx.fillStyle = randomColor;
   var maxTime = getMaxElement(times);
   for (var i = 0; i < names.length; i++) {
     var BarHeight = -(150 * times[i] / maxTime);
+    var X_COORDINATE = CLOUD_X + GAP + FONT_GAP + (GAP + BAR_WIDTH) * i;
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+    } else {
+      ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random().toFixed(2) + ')';
     }
-    ctx.fillText(names[i], CLOUD_X + GAP + FONT_GAP + (GAP + BAR_WIDTH) * i, CLOUD_Y + GAP);
-    ctx.fillRect(CLOUD_X + GAP + FONT_GAP + (GAP + BAR_WIDTH) * i, 120 + CLOUD_Y + GAP + TEXT_WIDTH, BAR_WIDTH, BarHeight);
+    ctx.fillText(names[i], X_COORDINATE, CLOUD_Y + GAP + 155);
+    ctx.fillText((Math.round(times[i] / 1000)), X_COORDINATE + 10, BarHeight + 220);
+    ctx.fillRect(X_COORDINATE, 100 + CLOUD_Y + GAP + TEXT_WIDTH, BAR_WIDTH, BarHeight);
   }
 };
