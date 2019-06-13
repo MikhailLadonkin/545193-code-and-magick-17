@@ -7,6 +7,9 @@ var CLOUD_Y = 50;
 var TEXT_WIDTH = 50;
 var FONT_GAP = 16;
 var BAR_WIDTH = 40;
+<<<<<<< HEAD
+=======
+>>>>>>> 0fb7c8301c42fd23b838cf4c625e33f490759a04
 var getMaxElement = function (arr) {
   var maxElement = arr[0];
   for (var i = 0; i < arr.length; i++) {
