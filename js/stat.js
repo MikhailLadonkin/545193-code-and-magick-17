@@ -7,7 +7,6 @@ var CLOUD_Y = 50;
 var TEXT_WIDTH = 50;
 var FONT_GAP = 16;
 var BAR_WIDTH = 40;
-
 var getMaxElement = function (arr) {
   var maxElement = arr[0];
   for (var i = 0; i < arr.length; i++) {
@@ -17,7 +16,6 @@ var getMaxElement = function (arr) {
   }
   return maxElement;
 };
-
 window.renderStatistics = function (ctx, names, times) {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.fillRect(160, 20, CLOUD_WIDTH, CLOUD_HEIGHT);
